@@ -91,7 +91,7 @@ class Crocodile {
   moveLeft() {
     if (this.positionX > 0) {
       this.positionX -= this.movementAmount;
-      console.log("new position x axis...." + this.positionX);
+      console.log("croc1 position x axis...." + this.positionX);
       this.crocElement.style.left = this.positionX + "vw";
     }
   }
@@ -99,7 +99,7 @@ class Crocodile {
   moveRight() {
     if (this.positionX < 100 - this.width) {
       this.positionX += this.movementAmount;
-      console.log("new position x axis...." + this.positionX);
+      console.log("croc1 position x axis...." + this.positionX);
       this.crocElement.style.left = this.positionX + "vw";
     }
   }
@@ -107,7 +107,7 @@ class Crocodile {
   moveUp() {
     if (this.positionY < 80 - this.height) {
       this.positionY += this.movementAmount;
-      console.log("new position y axis...." + this.positionY);
+      console.log("croc1 position y axis...." + this.positionY);
       this.crocElement.style.bottom = this.positionY + "vh";
     }
   }
@@ -115,7 +115,7 @@ class Crocodile {
   moveDown() {
     if (this.positionY > 20) {
       this.positionY -= this.movementAmount;
-      console.log("new position y axis...." + this.positionY);
+      console.log("croc1 position y axis...." + this.positionY);
       this.crocElement.style.bottom = this.positionY + "vh";
     }
   }
@@ -160,4 +160,24 @@ document.addEventListener("keydown", function (event) {
       crocodile1.moveDown();
     }
   }
+  detectCollision()
 });
+
+// detecting collisions
+function detectCollision() {
+  if (
+    zebra.positionX < crocodile1.positionX + crocodile1.width + 1 &&
+    zebra.positionX + zebra.width + 1 > crocodile1.positionX &&
+    zebra.positionY < crocodile1.positionY + crocodile1.height + 1 &&
+    zebra.height + zebra.positionY + 1 > crocodile1.positionY
+  ) {
+    console.log("collision detected!!");
+    //location.href = "gameover.html";
+  }
+}
+
+//running an interval to run the detect collision function
+
+//setInterval(() => {
+//    detectCollision()
+//}, 50);

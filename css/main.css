@@ -32,12 +32,10 @@ body {
 
 #zebra {
     background-color: whitesmoke;
-    border: 5px solid black;
     position: absolute;
 }
 
 #crocodile1 {
     background-color: chartreuse;
-    border: 2px solid darkgreen;
     position:absolute;
 }
