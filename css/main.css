@@ -31,7 +31,12 @@ body {
 }
 
 #zebra {
-    background-color: whitesmoke;
+    background-image: url('../images/zebra.jpg') ;
+    background-color: grey;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
     position: absolute;
 }
 
@@ -39,3 +44,4 @@ body {
     background-color: chartreuse;
     position:absolute;
 }
+

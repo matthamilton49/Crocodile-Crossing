@@ -160,24 +160,25 @@ document.addEventListener("keydown", function (event) {
       crocodile1.moveDown();
     }
   }
-  detectCollision()
+  detectCollision();
+  detectWin();
 });
 
 // detecting collisions
 function detectCollision() {
   if (
-    zebra.positionX < crocodile1.positionX + crocodile1.width + 1 &&
-    zebra.positionX + zebra.width + 1 > crocodile1.positionX &&
-    zebra.positionY < crocodile1.positionY + crocodile1.height + 1 &&
-    zebra.height + zebra.positionY + 1 > crocodile1.positionY
+    zebra.positionX < crocodile1.positionX + crocodile1.width  &&
+    zebra.positionX + zebra.width> crocodile1.positionX &&
+    zebra.positionY < crocodile1.positionY + crocodile1.height &&
+    zebra.height + zebra.positionY> crocodile1.positionY
   ) {
     console.log("collision detected!!");
-    //location.href = "gameover.html";
+    location.href = "gameover.html";
   }
 }
 
-//running an interval to run the detect collision function
-
-//setInterval(() => {
-//    detectCollision()
-//}, 50);
+function detectWin() {
+  if (zebra.positionY >= 80) {
+    console.log('Winner')
+  }
+}
