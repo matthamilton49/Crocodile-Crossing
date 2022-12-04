@@ -5,19 +5,25 @@ body {
 }
 
 #gameBoard {
-    background: blue;
     height: 100vh;
     width: 100vw;
     position: relative;
+    display: flex;
+    flex-direction: column;
+
 }
 
 #grass {
-    background-color: green;
+    background-color: rgb(64, 228, 64);
     height: 20vh;
     width:100vw;
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 #sand {
@@ -27,21 +33,72 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+#river {
+    position: absolute;
+    height: 60vh;
+    width: 100vw;
+    bottom: 20vh;
+    left: 0;
+    background-color: rgb(81, 81, 251);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap:wrap;
+   
 
 }
 
 #zebra {
-    background-image: url('../images/zebra.jpg') ;
-    background-color: grey;
+    background-image: url('../images/zebra.png') ;
+    background-color: none;
     background-size: contain;
     background-repeat: no-repeat;
     padding: 0;
     margin: 0;
     position: absolute;
+    background-position: center;
 }
 
 #crocodile1 {
-    background-color: chartreuse;
-    position:absolute;
+    background-image: url('../images/croc.png') ;
+    background-color: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-position: center;
+
+}
+ .grassImage {
+   height: 9vh;
+   margin-top: 3vh;
+  
+ }
+
+ .grassImageLow {
+    height: 9vh;
+    margin-top: 9vh;
+   
+  }
+
+.dirt {
+    height: 6vh;
+    margin-top: 12vh;
 }
 
+.dirtHigh {
+    height: 6vh;
+    margin-top: 6vh;
+}
+
+.waves {
+    height: 15vh;
+    margin-top: 2vh;
+}
