@@ -71,7 +71,7 @@ body {
     background-position: center;
 }
 
-#crocodile1 {
+#crocodile {
     background-image: url('../images/croc.png') ;
     background-color: none;
     background-size: contain;

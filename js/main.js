@@ -76,7 +76,7 @@ class Crocodile {
   createCrocElement() {
     this.crocElement = document.createElement("div"); //step 1: create the croc div
 
-    this.crocElement.id = "crocodile1"; //step 2: add content
+    this.crocElement.id = "crocodile"; //step 2: add content
 
     this.crocElement.style.width = this.width + "vw"; //croc size
     this.crocElement.style.height = this.height + "vh";
@@ -126,18 +126,41 @@ class Game {
     this.zebra = null;
     this.crocodiles = [];
     this.hippos = [];
+    this.level = 1
+   
   }
 
-  start() {
-    this.zebra = new Zebra();
-    this.movementZebra();
-    this.movementCrocodile();
-
-    const croc = new Crocodile();
-    this.crocodiles.push(croc);
-
-    this.detectCollision();
-    this.detectWin();
+  startLevel(level) {
+   
+    if (level === 1) {
+      this.zebra = new Zebra();
+      const croc1 = new Crocodile();
+      this.crocodiles.push(croc1);
+    } else if (level === 2) {
+      this.zebra = new Zebra();
+      const croc1 = new Crocodile();
+      const croc2 = new Crocodile();
+      this.crocodiles.push(croc1);
+      this.crocodiles.push(croc2);
+    } else if (level === 3) {
+      this.zebra = new Zebra();
+      const croc1 = new Crocodile();
+      const croc2 = new Crocodile();
+      const croc3 = new Crocodile();
+      this.crocodiles.push(croc1);
+      this.crocodiles.push(croc2);
+      this.crocodiles.push(croc3);
+    } else if (level === 4) {
+      this.zebra = new Zebra();
+      const croc1 = new Crocodile();
+      const croc2 = new Crocodile();
+      const croc3 = new Crocodile();
+      const croc4 = new Crocodile();
+      this.crocodiles.push(croc1);
+      this.crocodiles.push(croc2);
+      this.crocodiles.push(croc3);
+      this.crocodiles.push(croc4);
+    }
   }
 
   movementZebra() {
@@ -151,7 +174,9 @@ class Game {
       } else if (event.key === "ArrowDown" || event.key === "s") {
         this.zebra.moveDown();
       }
+      console.log(this.crocodiles[0].movementAmount);
     });
+    
   }
 
   movementCrocodile() {
@@ -166,13 +191,13 @@ class Game {
         event.key === "ArrowDown" ||
         event.key === "s"
       ) {
-        let randomNumber = Math.floor(Math.random() * 4);
         for (let i = 0; i < this.crocodiles.length; i++) {
-          if (randomNumber === 0) {
+          this.crocodiles[i].randomNumber = Math.floor(Math.random() * 4);
+          if (this.crocodiles[i].randomNumber === 0) {
             this.crocodiles[i].moveRight();
-          } else if (randomNumber === 1) {
+          } else if (this.crocodiles[i].randomNumber === 1) {
             this.crocodiles[i].moveUp();
-          } else if (randomNumber === 2) {
+          } else if (this.crocodiles[i].randomNumber === 2) {
             this.crocodiles[i].moveLeft();
           } else {
             this.crocodiles[i].moveDown();
@@ -203,13 +228,22 @@ class Game {
 
   detectWin() {
     if (this.zebra.positionY >= 80) {
+      this.level++;
       console.log("Winner");
+      this.zebra.crocElement.remove();
+      for (let i=0; i<this.crocodiles.length; i++){
+      this.crocodiles[i].crocElement.remove()};
+     
+    
       location.href = "level.html";
+      //game.startLevel(this.newLevel) //this method will need to clear all old elements before beginning the new level
+    this.startLevel(this.level);
     }
   }
 }
 
 const game = new Game();
-game.start();
-console.log(this.crocodiles);
-
+game.startLevel(1);
+game.movementZebra();
+game.movementCrocodile();
+//game.startLevel(this.newLevel);//loses croc movement and collision detection
