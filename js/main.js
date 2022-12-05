@@ -121,88 +121,95 @@ class Crocodile {
   }
 }
 
-const zebra = new Zebra();
-const crocodile1 = new Crocodile();
-const crocodile2 = new Crocodile();
-
-//key down event listener
-document.addEventListener("keydown", function (event) {
-  if (event.key === "ArrowRight" || event.key === "d") {
-    zebra.moveRight();
-  } else if (event.key === "ArrowLeft" || event.key === "a") {
-    zebra.moveLeft();
-  } else if (event.key === "ArrowUp" || event.key === "w") {
-    zebra.moveUp();
-  } else if (event.key === "ArrowDown" || event.key === "s") {
-    zebra.moveDown();
+class Game {
+  constructor() {
+    this.zebra = null;
+    this.crocodiles = [];
+    this.hippos = [];
   }
-});
 
-//crocdile random movement every key stroke
-document.addEventListener("keydown", function (event) {
-  if (
-    event.key === "ArrowRight" ||
-    event.key === "d" ||
-    event.key === "ArrowLeft" ||
-    event.key === "a" ||
-    event.key === "ArrowUp" ||
-    event.key === "w" ||
-    event.key === "ArrowDown" ||
-    event.key === "s"
-  ) {
-    const randomNumber = Math.floor(Math.random() * 4);
-    if (randomNumber === 0) {
-      crocodile1.moveRight();
-    } else if (randomNumber === 1) {
-      crocodile1.moveUp();
-    } else if (randomNumber === 2) {
-      crocodile1.moveLeft();
-    } else {
-      crocodile1.moveDown();
+  start() {
+    this.zebra = new Zebra();
+    this.movementZebra();
+    this.movementCrocodile();
+
+    const croc = new Crocodile();
+    this.crocodiles.push(croc);
+
+    this.detectCollision();
+    this.detectWin();
+  }
+
+  movementZebra() {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "d") {
+        this.zebra.moveRight();
+      } else if (event.key === "ArrowLeft" || event.key === "a") {
+        this.zebra.moveLeft();
+      } else if (event.key === "ArrowUp" || event.key === "w") {
+        this.zebra.moveUp();
+      } else if (event.key === "ArrowDown" || event.key === "s") {
+        this.zebra.moveDown();
+      }
+    });
+  }
+
+  movementCrocodile() {
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "ArrowRight" ||
+        event.key === "d" ||
+        event.key === "ArrowLeft" ||
+        event.key === "a" ||
+        event.key === "ArrowUp" ||
+        event.key === "w" ||
+        event.key === "ArrowDown" ||
+        event.key === "s"
+      ) {
+        let randomNumber = Math.floor(Math.random() * 4);
+        for (let i = 0; i < this.crocodiles.length; i++) {
+          if (randomNumber === 0) {
+            this.crocodiles[i].moveRight();
+          } else if (randomNumber === 1) {
+            this.crocodiles[i].moveUp();
+          } else if (randomNumber === 2) {
+            this.crocodiles[i].moveLeft();
+          } else {
+            this.crocodiles[i].moveDown();
+          }
+        }
+      }
+      this.detectCollision();
+      this.detectWin();
+    });
+  }
+
+  detectCollision() {
+    for (let i = 0; i < this.crocodiles.length; i++) {
+      if (
+        this.zebra.positionX <
+          this.crocodiles[i].positionX + this.crocodiles[i].width &&
+        this.zebra.positionX + this.zebra.width >
+          this.crocodiles[i].positionX &&
+        this.zebra.positionY <
+          this.crocodiles[i].positionY + this.crocodiles[i].height &&
+        this.zebra.height + this.zebra.positionY > this.crocodiles[i].positionY
+      ) {
+        console.log("collision detected!!");
+        location.href = "gameover.html";
+      }
     }
   }
-  const randomNumber = Math.floor(Math.random() * 4);
-  if (randomNumber === 0) {
-    crocodile2.moveRight();
-  } else if (randomNumber === 1) {
-    crocodile2.moveUp();
-  } else if (randomNumber === 2) {
-    crocodile2.moveLeft();
-  } else {
-    crocodile2.moveDown();
-  }
-  detectCollisionCroc1();
-  detectCollisionCroc2();
-  detectWin();
-});
 
-// detecting collisions
-function detectCollisionCroc1() {
-  if (
-    zebra.positionX < crocodile1.positionX + crocodile1.width &&
-    zebra.positionX + zebra.width > crocodile1.positionX &&
-    zebra.positionY < crocodile1.positionY + crocodile1.height &&
-    zebra.height + zebra.positionY > crocodile1.positionY
-  ) {
-    console.log("collision detected!!");
-    location.href = "gameover.html";
+  detectWin() {
+    if (this.zebra.positionY >= 80) {
+      console.log("Winner");
+      location.href = "level.html";
+    }
   }
 }
 
-function detectCollisionCroc2() {
-  if (
-    zebra.positionX < crocodile2.positionX + crocodile2.width &&
-    zebra.positionX + zebra.width > crocodile2.positionX &&
-    zebra.positionY < crocodile2.positionY + crocodile2.height &&
-    zebra.height + zebra.positionY > crocodile2.positionY
-  ) {
-    console.log("collision detected!!");
-    location.href = "gameover.html";
-  }
-}
-function detectWin() {
-  if (zebra.positionY >= 80) {
-    console.log("Winner");
-    location.href = "level.html";
-  }
-}
+const game = new Game();
+game.start();
+console.log(this.crocodiles);
+
