@@ -1,12 +1,12 @@
 html {
     background-image: linear-gradient(to bottom right, rgb(39, 226, 49), rgb(22, 107, 7));
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     min-height: 100%;
     min-width: 1024px;
-  
+
     width: 100%;
     height: auto;
-  }
+}
 
 
 
@@ -30,13 +30,12 @@ img {
     box-sizing: border-box;
 }
 
-p {
-    margin-top: 10vh;
-    display: flex;
-}
+
+
+
 
 button {
-    color:whitesmoke;
+    color: whitesmoke;
     background-color: black;
     text-align: center;
     padding: 5vh 12vw;
@@ -54,7 +53,7 @@ a {
     text-decoration: none;
 }
 
-h1 {
+#gameover h1 {
     color: whitesmoke;
     font-size: 20vh;
     font-family: 'Times New Roman', Times, serif;
@@ -62,7 +61,23 @@ h1 {
 }
 
 #gameover {
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
+
+}
+
+#congratulations {
+    color: whitesmoke;
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: oblique;
+}
+
+#congratulations h1 {
+    font-size: 13vh;
 }

@@ -65,8 +65,8 @@ class Crocodile {
     this.width = 10;
     this.height = 10;
 
-    this.positionX = Math.floor(Math.random() * 10)*10;
-    this.positionY = Math.floor(Math.random() * (7 - 2) + 2)*10;
+    this.positionX = Math.floor(Math.random() * 10) * 10;
+    this.positionY = Math.floor(Math.random() * (7 - 2) + 2) * 10;
 
     this.movementAmount = 10;
 
@@ -162,15 +162,15 @@ document.addEventListener("keydown", function (event) {
     }
   }
   const randomNumber = Math.floor(Math.random() * 4);
-    if (randomNumber === 0) {
-      crocodile2.moveRight();
-    } else if (randomNumber === 1) {
-      crocodile2.moveUp();
-    } else if (randomNumber === 2) {
-      crocodile2.moveLeft();
-    } else {
-      crocodile2.moveDown();
-    }
+  if (randomNumber === 0) {
+    crocodile2.moveRight();
+  } else if (randomNumber === 1) {
+    crocodile2.moveUp();
+  } else if (randomNumber === 2) {
+    crocodile2.moveLeft();
+  } else {
+    crocodile2.moveDown();
+  }
   detectCollisionCroc1();
   detectCollisionCroc2();
   detectWin();
@@ -179,10 +179,10 @@ document.addEventListener("keydown", function (event) {
 // detecting collisions
 function detectCollisionCroc1() {
   if (
-    zebra.positionX < crocodile1.positionX + crocodile1.width  &&
-    zebra.positionX + zebra.width> crocodile1.positionX &&
+    zebra.positionX < crocodile1.positionX + crocodile1.width &&
+    zebra.positionX + zebra.width > crocodile1.positionX &&
     zebra.positionY < crocodile1.positionY + crocodile1.height &&
-    zebra.height + zebra.positionY> crocodile1.positionY 
+    zebra.height + zebra.positionY > crocodile1.positionY
   ) {
     console.log("collision detected!!");
     location.href = "gameover.html";
@@ -191,10 +191,10 @@ function detectCollisionCroc1() {
 
 function detectCollisionCroc2() {
   if (
-    zebra.positionX < crocodile2.positionX + crocodile2.width  &&
-    zebra.positionX + zebra.width> crocodile2.positionX &&
+    zebra.positionX < crocodile2.positionX + crocodile2.width &&
+    zebra.positionX + zebra.width > crocodile2.positionX &&
     zebra.positionY < crocodile2.positionY + crocodile2.height &&
-    zebra.height + zebra.positionY> crocodile2.positionY 
+    zebra.height + zebra.positionY > crocodile2.positionY
   ) {
     console.log("collision detected!!");
     location.href = "gameover.html";
@@ -202,6 +202,7 @@ function detectCollisionCroc2() {
 }
 function detectWin() {
   if (zebra.positionY >= 80) {
-    console.log('Winner')
+    console.log("Winner");
+    location.href = "level.html";
   }
 }
