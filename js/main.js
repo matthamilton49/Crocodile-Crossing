@@ -126,23 +126,26 @@ class Game {
     this.zebra = null;
     this.crocodiles = [];
     this.hippos = [];
-    this.level = 1
-   
+    this.level = 1;
   }
 
   startLevel(level) {
-   
+    const counter = document.getElementById("levelCounterSpan");
+    counter.innerText = this.level;
+    const instructions = document.getElementById("instructions");
     if (level === 1) {
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
       this.crocodiles.push(croc1);
     } else if (level === 2) {
+      instructions.innerText = "Crocodiles will only move 1 space, and only when Zach moves";
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
       const croc2 = new Crocodile();
       this.crocodiles.push(croc1);
       this.crocodiles.push(croc2);
     } else if (level === 3) {
+      instructions.innerText = "Crocodiles can only move 'Up, Down, Left and Right'";
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
       const croc2 = new Crocodile();
@@ -151,6 +154,7 @@ class Game {
       this.crocodiles.push(croc2);
       this.crocodiles.push(croc3);
     } else if (level === 4) {
+      instructions.innerText = "More and more crocodiles can smell fresh zebra!";
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
       const croc2 = new Crocodile();
@@ -160,8 +164,7 @@ class Game {
       this.crocodiles.push(croc2);
       this.crocodiles.push(croc3);
       this.crocodiles.push(croc4);
-    }
-  }
+    } 
 
   movementZebra() {
     document.addEventListener("keydown", (event) => {
@@ -176,7 +179,6 @@ class Game {
       }
       console.log(this.crocodiles[0].movementAmount);
     });
-    
   }
 
   movementCrocodile() {
@@ -231,13 +233,11 @@ class Game {
       this.level++;
       console.log("Winner");
       this.zebra.crocElement.remove();
-      for (let i=0; i<this.crocodiles.length; i++){
-      this.crocodiles[i].crocElement.remove()};
-     
-    
-      location.href = "level.html";
-      //game.startLevel(this.newLevel) //this method will need to clear all old elements before beginning the new level
-    this.startLevel(this.level);
+      for (let i = 0; i < this.crocodiles.length; i++) {
+        this.crocodiles[i].crocElement.remove();
+      }
+
+      this.startLevel(this.level);
     }
   }
 }
@@ -246,4 +246,3 @@ const game = new Game();
 game.startLevel(1);
 game.movementZebra();
 game.movementCrocodile();
-//game.startLevel(this.newLevel);//loses croc movement and collision detection

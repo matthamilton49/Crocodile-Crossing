@@ -108,3 +108,26 @@ body {
     height: 15vh;
     margin-top: 2vh;
 }
+
+#levelCounter {
+    height: 12vh;
+    position:absolute;
+    top: 2vh;
+    left: 15vw;
+    color: whitesmoke;
+    font-size: 11vh;
+    font-style: oblique;
+}
+
+#instructions {
+    height: 18vh;
+    width: 25vw;
+    position:absolute;
+    top: 5vh;
+    right: 5vw;
+    color: whitesmoke;
+    font-size: 2.5vh;
+    font-style: oblique;
+    text-align: left;
+
+}
