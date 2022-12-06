@@ -80,8 +80,19 @@ body {
     margin: 0;
     position: absolute;
     background-position: center;
-
 }
+
+#hippo {
+    background-image: url('../images/hippo.png') ;
+    background-color: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-position: center;
+}
+
  .grassImage {
    height: 9vh;
    margin-top: 3vh;
