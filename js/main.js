@@ -3,55 +3,55 @@ class Zebra {
     this.width = 10;
     this.height = 10;
 
-    this.positionX = 40;
+    this.positionX = Math.floor(Math.random() * 10) * 10; //zebra can start on random tile on bottom
     this.positionY = 0;
 
     this.movementAmount = 10;
 
     this.crocElement = null;
-    this.createCrocElement();
+    this.createZebraElement();
   }
 
-  createCrocElement() {
-    this.crocElement = document.createElement("div"); //step 1: create the DOM element
+  createZebraElement() {
+    this.zebraElement = document.createElement("div"); //step 1: create the DOM element
 
-    this.crocElement.id = "zebra"; //step 2: add content
+    this.zebraElement.id = "zebra"; //step 2: add content
 
-    this.crocElement.style.width = this.width + "vw"; //player size
-    this.crocElement.style.height = this.height + "vh";
+    this.zebraElement.style.width = this.width + "vw"; //player size
+    this.zebraElement.style.height = this.height + "vh";
 
-    this.crocElement.style.bottom = this.positionY + "vh"; //player position
-    this.crocElement.style.left = this.positionX + "vw";
+    this.zebraElement.style.bottom = this.positionY + "vh"; //player position
+    this.zebraElement.style.left = this.positionX + "vw";
 
     const gameBoardElement = document.getElementById("gameBoard"); //step 3: append to parent
-    gameBoardElement.appendChild(this.crocElement);
+    gameBoardElement.appendChild(this.zebraElement);
   }
 
   moveLeft() {
     if (this.positionX > 0) {
       this.positionX -= this.movementAmount;
-      this.crocElement.style.left = this.positionX + "vw";
+      this.zebraElement.style.left = this.positionX + "vw";
     }
   }
 
   moveRight() {
     if (this.positionX < 100 - this.width) {
       this.positionX += this.movementAmount;
-      this.crocElement.style.left = this.positionX + "vw";
+      this.zebraElement.style.left = this.positionX + "vw";
     }
   }
 
   moveUp() {
     if (this.positionY < 100 - this.height) {
       this.positionY += this.movementAmount;
-      this.crocElement.style.bottom = this.positionY + "vh";
+      this.zebraElement.style.bottom = this.positionY + "vh";
     }
   }
 
   moveDown() {
     if (this.positionY > 0) {
       this.positionY -= this.movementAmount;
-      this.crocElement.style.bottom = this.positionY + "vh";
+      this.zebraElement.style.bottom = this.positionY + "vh";
     }
   }
 }
@@ -69,6 +69,7 @@ class Crocodile {
     this.crocElement = null;
     this.createCrocElement();
   }
+
   createCrocElement() {
     this.crocElement = document.createElement("div"); //step 1: create the croc div
 
@@ -118,7 +119,7 @@ class Hippo {
     this.width = 10;
     this.height = 10;
 
-    this.startingPositionX = Math.floor(Math.random() * (9 - 1) + 1) * 10;
+    this.startingPositionX = Math.floor(Math.random() * (8 - 1) + 1) * 10;
     this.startingPositionY = Math.floor(Math.random() * (6 - 3) + 3) * 10;
 
     this.positionX = this.startingPositionX;
@@ -127,56 +128,42 @@ class Hippo {
     this.movementAmount = 10;
     this.movementArray = ["start"];
 
-    this.crocElement = null;
-    this.createCrocElement();
+    this.hippoElement = null;
+    this.createHippoElement();
   }
-  createCrocElement() {
-    this.crocElement = document.createElement("div"); //step 1: create the hippo div
+  createHippoElement() {
+    this.hippoElement = document.createElement("div"); //step 1: create the hippo div
 
-    this.crocElement.id = "hippo"; //step 2: add content
+    this.hippoElement.id = "hippo"; //step 2: add content
 
-    this.crocElement.style.width = this.width + "vw"; //hippo size
-    this.crocElement.style.height = this.height + "vh";
+    this.hippoElement.style.width = this.width + "vw"; //hippo size
+    this.hippoElement.style.height = this.height + "vh";
 
-    this.crocElement.style.bottom = this.positionY + "vh"; //hippo start position
-    this.crocElement.style.left = this.positionX + "vw";
+    this.hippoElement.style.bottom = this.positionY + "vh"; //hippo start position
+    this.hippoElement.style.left = this.positionX + "vw";
 
     const gameBoardElement = document.getElementById("gameBoard"); //step 3: append to parent
-    gameBoardElement.appendChild(this.crocElement);
+    gameBoardElement.appendChild(this.hippoElement);
   }
 
   moveLeft() {
-    if (this.positionX > 0 || this.positionX === this.startingPositionX + 10) {
       this.positionX -= this.movementAmount;
-      this.crocElement.style.left = this.positionX + "vw";
-    }
+      this.hippoElement.style.left = this.positionX + "vw";
   }
 
   moveRight() {
-    if (
-      this.positionX < 100 - this.width ||
-      this.positionX === this.startingPositionX - 10
-    ) {
       this.positionX += this.movementAmount;
-      this.crocElement.style.left = this.positionX + "vw";
-    }
+      this.hippoElement.style.left = this.positionX + "vw";
   }
 
   moveUp() {
-    if (
-      this.positionY < 80 - this.height ||
-      this.positionY === this.startingPositionY - 10
-    ) {
       this.positionY += this.movementAmount;
-      this.crocElement.style.bottom = this.positionY + "vh";
-    }
+      this.hippoElement.style.bottom = this.positionY + "vh";
   }
 
   moveDown() {
-    if (this.positionY > 20 || this.positionY === this.startingPositionY + 10) {
       this.positionY -= this.movementAmount;
-      this.crocElement.style.bottom = this.positionY + "vh";
-    }
+      this.hippoElement.style.bottom = this.positionY + "vh";
   }
 }
 
@@ -192,6 +179,7 @@ class Game {
     const counter = document.getElementById("levelCounterSpan");
     counter.innerText = this.level;
     const instructions = document.getElementById("instructions");
+    
     if (level === 1) {
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
@@ -298,7 +286,7 @@ class Game {
       this.hippos.push(hippo4);
     }
   }
-  movementZebra() {
+  addEventListenerZebra() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight" || event.key === "d") {
         this.zebra.moveRight();
@@ -312,7 +300,7 @@ class Game {
     });
   }
 
-  movementCrocodile() {
+  addEventListenerCrocodile() {
     document.addEventListener("keydown", (event) => {
       if (
         event.key === "ArrowRight" ||
@@ -343,7 +331,7 @@ class Game {
     });
   }
 
-  movementHippo() {
+  addEventListenerHippo() {
     document.addEventListener("keydown", (event) => {
       if (
         event.key === "ArrowRight" ||
@@ -416,7 +404,9 @@ class Game {
         this.zebra.height + this.zebra.positionY > this.crocodiles[i].positionY
       ) {
         console.log("collision detected!!");
-        //location.href = "gameover.html";
+        console.log(`crocX ${this.crocodiles[i].positionX}, crocY ${this.crocodiles[i].positionY} `)
+        console.log(`zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `)
+       // location.href = "../gameover.html";
       }
     }
   }
@@ -433,13 +423,18 @@ class Game {
         this.zebra.height + this.zebra.positionY > this.hippos[i].positionY
       ) {
         console.log("collision detected!!");
-        //location.href = "gameover.html";
+        console.log(`hippoX${this.hippos[i].positionX}, hippoY${this.hippos[i].positionY} `)
+        //location.href = "../gameover.html";
       }
     }
   }
 
   detectWin() {
-    if (this.zebra.positionY >= 80) {
+  if (this.zebra.positionY >= 80 && this.level === 8) {
+   // location.href = "../level.html";
+   console.log("you have won the game");
+   alert("you have won the game")
+  } else if (this.zebra.positionY >= 80) {
       this.level++;
       console.log("Winner");
       this.zebra.crocElement.remove();
@@ -457,6 +452,6 @@ class Game {
 
 const game = new Game();
 game.startLevel(1);
-game.movementZebra();
-game.movementCrocodile();
-game.movementHippo();
+game.addEventListenerZebra();
+game.addEventListenerCrocodile();
+game.addEventListenerHippo();
