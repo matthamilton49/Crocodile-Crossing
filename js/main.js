@@ -424,14 +424,14 @@ class Game {
       ) {
         console.log("collision detected!!");
         console.log(`hippoX${this.hippos[i].positionX}, hippoY${this.hippos[i].positionY} `)
-        //location.href = "../gameover.html";
+        //location.href = "./gameover.html";
       }
     }
   }
 
   detectWin() {
   if (this.zebra.positionY >= 80 && this.level === 8) {
-   // location.href = "../level.html";
+   // location.href = "./level.html";
    console.log("you have won the game");
    alert("you have won the game")
   } else if (this.zebra.positionY >= 80) {
