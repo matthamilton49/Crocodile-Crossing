@@ -437,12 +437,12 @@ class Game {
   } else if (this.zebra.positionY >= 80) {
       this.level++;
       console.log("Winner");
-      this.zebra.crocElement.remove();
+      this.zebra.zebraElement.remove();
       for (let i = 0; i < this.crocodiles.length; i++) {
         this.crocodiles[i].crocElement.remove();
       }
       for (let j = 0; j < this.hippos.length; j++) {
-        this.hippos[j].crocElement.remove();
+        this.hippos[j].hippoElement.remove();
       }
 
       this.startLevel(this.level);
