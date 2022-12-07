@@ -3,7 +3,7 @@ class Zebra {
     this.width = 10;
     this.height = 10;
 
-    this.positionX = Math.floor(Math.random() * 10) * 10; //zebra can start on random tile on bottom
+    this.positionX = 40;
     this.positionY = 0;
 
     this.movementAmount = 10;
@@ -186,108 +186,59 @@ class Game {
 
     if (level === 1) {
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      this.crocodiles.push(croc1);
+      this.createCrocodiles(1);
     } else if (level === 2) {
       instructions.innerText =
         "Crocodiles will only move 1 space, and only when Zach moves";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
+      this.createCrocodiles(2);
     } else if (level === 3) {
       instructions.innerText =
         "Crocodiles can only move 'Up, Down, Left and Right'";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      const croc3 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      this.crocodiles.push(croc3);
+      this.createCrocodiles(3);
     } else if (level === 4) {
       instructions.innerText =
         "More and more crocodiles can smell fresh zebra!";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      const croc3 = new Crocodile();
-      const croc4 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      this.crocodiles.push(croc3);
-      this.crocodiles.push(croc4);
+      this.createCrocodiles(4);
     } else if (level === 5) {
       instructions.innerText =
         "Hippos are territorial, they will only move one space before returning to their starting position";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      const hippo1 = new Hippo();
-      this.hippos.push(hippo1);
+      this.createHippos(2);
     } else if (level === 6) {
-      instructions.innerText = "More hippos means less space for Zach to cross";
+      instructions.innerText = "Oh no!!! Crocodiles and hippos in the same river....";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      const hippo1 = new Hippo();
-      this.hippos.push(hippo1);
-      const hippo2 = new Hippo();
-      this.hippos.push(hippo2);
+      this.createCrocodiles(1);
+      this.createHippos(2);
     } else if (level === 7) {
       instructions.innerText =
         "uh oh! Looks like more crocodiles are swimming around";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      const croc3 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      this.crocodiles.push(croc3);
-      const hippo1 = new Hippo();
-      this.hippos.push(hippo1);
-      const hippo2 = new Hippo();
-      this.hippos.push(hippo2);
+      this.createCrocodiles(2);
+      this.createHippos(2);
     } else if (level === 8) {
       instructions.innerText =
         "Whoa! Now more hippos are making homes in the river";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      const croc3 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      this.crocodiles.push(croc3);
-      const hippo1 = new Hippo();
-      this.hippos.push(hippo1);
-      const hippo2 = new Hippo();
-      this.hippos.push(hippo2);
-      const hippo3 = new Hippo();
-      this.hippos.push(hippo3);
+      this.createCrocodiles(3);
+      this.createHippos(2);
     } else if (level === 8) {
+      instructions.innerText = "This is getting pretty DANGEROUS!";
+      this.zebra = new Zebra();
+      this.createCrocodiles(3);
+      this.createHippos(3);
+    } else if (level === 9) {
       instructions.innerText = "You're joking right???!!!";
       this.zebra = new Zebra();
-      const croc1 = new Crocodile();
-      const croc2 = new Crocodile();
-      const croc3 = new Crocodile();
-      const croc4 = new Crocodile();
-      this.crocodiles.push(croc1);
-      this.crocodiles.push(croc2);
-      this.crocodiles.push(croc3);
-      this.crocodiles.push(croc4);
-      const hippo1 = new Hippo();
-      this.hippos.push(hippo1);
-      const hippo2 = new Hippo();
-      this.hippos.push(hippo2);
-      const hippo3 = new Hippo();
-      this.hippos.push(hippo3);
-      const hippo4 = new Hippo();
-      this.hippos.push(hippo4);
+      this.createCrocodiles(4);
+      this.createHippos(3);
+    } else if (level === 10) {
+      instructions.innerText = "There has to be a better way!";
+      this.zebra = new Zebra();
+      this.createCrocodiles(4);
+      this.createHippos(4);
     }
   }
   addEventListenerZebra() {
@@ -316,79 +267,93 @@ class Game {
         event.key === "ArrowDown" ||
         event.key === "s"
       ) {
-      this.crocMovement();
-      this.hippoMovement();
-      this.detectCollisionCroc();
-      this.detectCollisionHippo();
-      this.detectWin();
+        this.crocMovement();
+        this.hippoMovement();
+        this.detectCollisionCroc();
+        this.detectCollisionHippo();
+        this.detectWin();
       }
     });
   }
 
-  crocMovement () {
-    for (let i = 0; i < this.crocodiles.length; i++) {
-      this.crocodiles[i].randomNumber = Math.floor(Math.random() * 4);
-    if (this.crocodiles[i].randomNumber === 0) {
-      this.crocodiles[i].moveRight();
-    } else if (this.crocodiles[i].randomNumber === 1) {
-      this.crocodiles[i].moveUp();
-    } else if (this.crocodiles[i].randomNumber === 2) {
-      this.crocodiles[i].moveLeft();
-    } else {
-      this.crocodiles[i].moveDown();
+  createCrocodiles(number) {
+    for (let i = 0; i < number; i++) {
+      const newCroc = new Crocodile();
+      this.crocodiles.push(newCroc);
     }
   }
-}
+
+  createHippos(number) {
+    for (let i = 0; i < number; i++) {
+      const newHippo = new Hippo();
+      this.hippos.push(newHippo);
+    }
+  }
+
+  crocMovement() {
+    for (let i = 0; i < this.crocodiles.length; i++) {
+      this.crocodiles[i].randomNumber = Math.floor(Math.random() * 4);
+      if (this.crocodiles[i].randomNumber === 0) {
+        this.crocodiles[i].moveRight();
+      } else if (this.crocodiles[i].randomNumber === 1) {
+        this.crocodiles[i].moveUp();
+      } else if (this.crocodiles[i].randomNumber === 2) {
+        this.crocodiles[i].moveLeft();
+      } else {
+        this.crocodiles[i].moveDown();
+      }
+    }
+  }
 
   hippoMovement() {
-        for (let i = 0; i < this.hippos.length; i++) {
-          if (this.hippos[i].movementArray.length % 2 === 1) {
-            this.hippos[i].randomNumber = Math.floor(Math.random() * 4);
-            if (this.hippos[i].randomNumber === 0) {
-              this.hippos[i].moveRight();
-              this.hippos[i].movementArray.push("right");
-            } else if (this.hippos[i].randomNumber === 1) {
-              this.hippos[i].moveUp();
-              this.hippos[i].movementArray.push("up");
-            } else if (this.hippos[i].randomNumber === 2) {
-              this.hippos[i].moveLeft();
-              this.hippos[i].movementArray.push("left");
-            } else {
-              this.hippos[i].moveDown();
-              this.hippos[i].movementArray.push("down");
-            }
-          } else if (
-            this.hippos[i].movementArray.length % 2 === 0 &&
-            this.hippos[i].movementArray[
-              this.hippos[i].movementArray.length - 1
-            ] === "right"
-          ) {
-            this.hippos[i].moveLeft();
-            this.hippos[i].movementArray.push("left");
-          } else if (
-            this.hippos[i].movementArray.length % 2 === 0 &&
-            this.hippos[i].movementArray[
-              this.hippos[i].movementArray.length - 1
-            ] === "left"
-          ) {
-            this.hippos[i].moveRight();
-            this.hippos[i].movementArray.push("right");
-          } else if (
-            this.hippos[i].movementArray.length % 2 === 0 &&
-            this.hippos[i].movementArray[
-              this.hippos[i].movementArray.length - 1
-            ] === "up"
-          ) {
-            this.hippos[i].moveDown();
-            this.hippos[i].movementArray.push("down");
-          } else {
-            this.hippos[i].moveUp();
-            this.hippos[i].movementArray.push("up");
-          }
-          console.log(
-            `hippoX ${this.hippos[i].positionX}  hippoY ${this.hippos[i].positionY}`
-          );
+    for (let i = 0; i < this.hippos.length; i++) {
+      if (this.hippos[i].movementArray.length % 2 === 1) {
+        this.hippos[i].randomNumber = Math.floor(Math.random() * 4);
+        if (this.hippos[i].randomNumber === 0) {
+          this.hippos[i].moveRight();
+          this.hippos[i].movementArray.push("right");
+        } else if (this.hippos[i].randomNumber === 1) {
+          this.hippos[i].moveUp();
+          this.hippos[i].movementArray.push("up");
+        } else if (this.hippos[i].randomNumber === 2) {
+          this.hippos[i].moveLeft();
+          this.hippos[i].movementArray.push("left");
+        } else {
+          this.hippos[i].moveDown();
+          this.hippos[i].movementArray.push("down");
         }
+      } else if (
+        this.hippos[i].movementArray.length % 2 === 0 &&
+        this.hippos[i].movementArray[
+          this.hippos[i].movementArray.length - 1
+        ] === "right"
+      ) {
+        this.hippos[i].moveLeft();
+        this.hippos[i].movementArray.push("left");
+      } else if (
+        this.hippos[i].movementArray.length % 2 === 0 &&
+        this.hippos[i].movementArray[
+          this.hippos[i].movementArray.length - 1
+        ] === "left"
+      ) {
+        this.hippos[i].moveRight();
+        this.hippos[i].movementArray.push("right");
+      } else if (
+        this.hippos[i].movementArray.length % 2 === 0 &&
+        this.hippos[i].movementArray[
+          this.hippos[i].movementArray.length - 1
+        ] === "up"
+      ) {
+        this.hippos[i].moveDown();
+        this.hippos[i].movementArray.push("down");
+      } else {
+        this.hippos[i].moveUp();
+        this.hippos[i].movementArray.push("up");
+      }
+      console.log(
+        `hippoX ${this.hippos[i].positionX}  hippoY ${this.hippos[i].positionY}`
+      );
+    }
   }
 
   detectCollisionCroc() {
@@ -428,7 +393,7 @@ class Game {
   }
 
   detectWin() {
-    if (this.zebra.positionY >= 80 && this.level === 8) {
+    if (this.zebra.positionY >= 80 && this.level === 10) {
       location.href = "./level.html";
     } else if (this.zebra.positionY >= 80) {
       this.level++;
@@ -451,4 +416,3 @@ const game = new Game();
 game.startLevel(1);
 game.addEventListenerZebra();
 game.addEventListenersEnemies();
-
