@@ -8,7 +8,7 @@ class Zebra {
 
     this.movementAmount = 10;
 
-    this.crocElement = null;
+    this.zebraElement = null;
     this.createZebraElement();
   }
 
@@ -171,11 +171,56 @@ class Hippo {
   }
 }
 
+class Lion {
+  constructor() {
+    this.width = 10;
+    this.height = 10;
+
+    this.positionX = Math.floor(Math.random() * 10) * 10;
+    this.positionY = 10;
+
+    this.movementAmount = 10;
+
+    this.lionElement = null;
+    this.createLionElement();
+  }
+
+  createLionElement() {
+    this.lionElement = document.createElement("div"); //step 1: create the DOM element
+
+    this.lionElement.id = "lion"; //step 2: add content
+
+    this.lionElement.style.width = this.width + "vw"; //player size
+    this.lionElement.style.height = this.height + "vh";
+
+    this.lionElement.style.bottom = this.positionY + "vh"; //player position
+    this.lionElement.style.left = this.positionX + "vw";
+
+    const gameBoardElement = document.getElementById("gameBoard"); //step 3: append to parent
+    gameBoardElement.appendChild(this.lionElement);
+  }
+
+  moveLeft() {
+    if (this.positionX > 0) {
+      this.positionX -= this.movementAmount;
+      this.lionElement.style.left = this.positionX + "vw";
+    }
+  }
+
+  moveRight() {
+    if (this.positionX < 100 - this.width) {
+      this.positionX += this.movementAmount;
+      this.lionElement.style.left = this.positionX + "vw";
+    }
+  }
+}
+
 class Game {
   constructor() {
     this.zebra = null;
     this.crocodiles = [];
     this.hippos = [];
+    this.lions = [];
     this.level = 1;
   }
 
@@ -189,58 +234,77 @@ class Game {
       this.createCrocodiles(1);
     } else if (level === 2) {
       instructions.innerText =
-        "Crocodiles will only move 1 space, and only when Zach moves";
-      this.zebra = new Zebra();
-      this.createCrocodiles(2);
-    } else if (level === 3) {
-      instructions.innerText =
-        "Crocodiles can only move 'Up, Down, Left and Right'";
-      this.zebra = new Zebra();
-      this.createCrocodiles(3);
-    } else if (level === 4) {
-      instructions.innerText =
-        "More and more crocodiles can smell fresh zebra!";
-      this.zebra = new Zebra();
-      this.createCrocodiles(4);
-    } else if (level === 5) {
-      instructions.innerText =
-        "Hippos are territorial, they will only move one space before returning to their starting position";
-      this.zebra = new Zebra();
-      this.createHippos(2);
-    } else if (level === 6) {
-      instructions.innerText = "Oh no!!! Crocodiles and hippos in the same river....";
+        "Hippos are territorial and will only move a short distance from their original position"
       this.zebra = new Zebra();
       this.createCrocodiles(1);
-      this.createHippos(2);
-    } else if (level === 7) {
+      this.createHippos(1);
+    } else if (level === 3) {
       instructions.innerText =
-        "uh oh! Looks like more crocodiles are swimming around";
+        "Lions parol the sandy banks looking for slow zebras";
+      this.zebra = new Zebra();
+      this.createCrocodiles(1);
+      this.createHippos(1);
+      this.createLions(1);
+    } else if (level === 4) {
+      instructions.innerText =
+        "Looks like the crocodile has called his friend";
+      this.zebra = new Zebra();
+      this.createCrocodiles(2);
+      this.createHippos(1);
+      this.createLions(1);
+    } else if (level === 5) {
+      instructions.innerText =
+        "Or is it one big crocodile family?";
+        this.zebra = new Zebra();
+        this.createCrocodiles(3);
+        this.createHippos(1);
+        this.createLions(1);
+    } else if (level === 6) {
+      instructions.innerText = "Watch out... Those hippos look hungry";
       this.zebra = new Zebra();
       this.createCrocodiles(2);
       this.createHippos(2);
+      this.createLions(1);
+    } else if (level === 7) {
+      instructions.innerText =
+        "There are more hippos here than crocodiles";
+        this.zebra = new Zebra();
+        this.createCrocodiles(2);
+        this.createHippos(3);
+        this.createLions(1);
     } else if (level === 8) {
       instructions.innerText =
-        "Whoa! Now more hippos are making homes in the river";
-      this.zebra = new Zebra();
+        "Looks like we spoke too soon";
+        this.zebra = new Zebra();
       this.createCrocodiles(3);
-      this.createHippos(2);
-    } else if (level === 8) {
-      instructions.innerText = "This is getting pretty DANGEROUS!";
+      this.createHippos(3);
+      this.createLions(1);
+    } else if (level === 9) {
+      instructions.innerText = "Is that a second lion?";
       this.zebra = new Zebra();
       this.createCrocodiles(3);
       this.createHippos(3);
-    } else if (level === 9) {
-      instructions.innerText = "You're joking right???!!!";
+      this.createLions(2);
+    } else if (level === 10) {
+      instructions.innerText = "Jeepers...  You better be quick";
       this.zebra = new Zebra();
       this.createCrocodiles(4);
-      this.createHippos(3);
-    } else if (level === 10) {
-      instructions.innerText = "There has to be a better way!";
+      this.createHippos(2);
+      this.createLions(2);
+    } else if (level === 11) {
+      instructions.innerText = "Is the grass on the other side really worth it?";
+      this.zebra = new Zebra();
+      this.createCrocodiles(3);
+      this.createHippos(4);
+      this.createLions(2);
+    } else if (level === 12) {
+      instructions.innerText = "You have to be joking!!!";
       this.zebra = new Zebra();
       this.createCrocodiles(4);
       this.createHippos(4);
-    }
+      this.createLions(2);
   }
+}
   addEventListenerZebra() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight" || event.key === "d") {
@@ -269,8 +333,10 @@ class Game {
       ) {
         this.crocMovement();
         this.hippoMovement();
+        this.lionMovement();
         this.detectCollisionCroc();
         this.detectCollisionHippo();
+        this.detectCollisionLion();
         this.detectWin();
       }
     });
@@ -287,6 +353,13 @@ class Game {
     for (let i = 0; i < number; i++) {
       const newHippo = new Hippo();
       this.hippos.push(newHippo);
+    }
+  }
+
+  createLions(number) {
+    for (let i = 0; i < number; i++) {
+      const newLion = new Lion();
+      this.lions.push(newLion);
     }
   }
 
@@ -350,12 +423,20 @@ class Game {
         this.hippos[i].moveUp();
         this.hippos[i].movementArray.push("up");
       }
-      console.log(
-        `hippoX ${this.hippos[i].positionX}  hippoY ${this.hippos[i].positionY}`
-      );
     }
   }
 
+  lionMovement() {
+    for (let i = 0; i < this.lions.length; i++) {
+      this.lions[i].randomNumber = Math.floor(Math.random() * 2);
+      if (this.lions[i].randomNumber === 1) {
+        this.lions[i].moveRight();
+      } else {
+        this.lions[i].moveLeft();
+      }
+    }
+  }
+  
   detectCollisionCroc() {
     for (let i = 0; i < this.crocodiles.length; i++) {
       if (
@@ -363,12 +444,6 @@ class Game {
         this.zebra.positionY === this.crocodiles[i].positionY
       ) {
         console.log("collision detected!!");
-        console.log(
-          `crocX ${this.crocodiles[i].positionX}, crocY ${this.crocodiles[i].positionY} `
-        );
-        console.log(
-          `zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `
-        );
         // location.href = "../gameover.html";
       }
     }
@@ -381,19 +456,25 @@ class Game {
         this.zebra.positionY === this.hippos[i].positionY
       ) {
         console.log("collision detected!!");
-        console.log(
-          `hippoX${this.hippos[i].positionX}, hippoY${this.hippos[i].positionY} `
-        );
-        console.log(
-          `zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `
-        );
         //location.href = "./gameover.html";
       }
     }
   }
 
+  detectCollisionLion() {
+    for (let i = 0; i < this.lions.length; i++) {
+      if (
+        this.zebra.positionX === this.lions[i].positionX &&
+        this.zebra.positionY === this.lions[i].positionY
+      ) {
+        console.log("collision detected!!");
+        // location.href = "../gameover.html";
+      }
+    }
+  }
+
   detectWin() {
-    if (this.zebra.positionY >= 80 && this.level === 10) {
+    if (this.zebra.positionY >= 80 && this.level === 20) {
       location.href = "./level.html";
     } else if (this.zebra.positionY >= 80) {
       this.level++;
@@ -405,8 +486,12 @@ class Game {
       for (let j = 0; j < this.hippos.length; j++) {
         this.hippos[j].hippoElement.remove();
       }
+      for (let k = 0; k < this.lions.length; k++) {
+        this.lions[k].lionElement.remove();
+      }
       this.crocodiles = [];
       this.hippos = [];
+      this.lions= [];
       this.startLevel(this.level);
     }
   }

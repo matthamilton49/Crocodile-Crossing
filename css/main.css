@@ -136,7 +136,7 @@ body {
 }
 
 #instructions {
-    height: 18vh;
+    height: auto;
     width: 25vw;
     position:absolute;
     top: 5vh;
@@ -145,5 +145,22 @@ body {
     font-size: 2.5vh;
     font-style: oblique;
     text-align: left;
-
+    font-weight: bold;
+    border: 2px solid whitesmoke;
+    padding: 5px;
+   
 }
+
+#lion {
+    background-image: url('../images/lion.png') ;
+    background-color: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-position: center;
+}
+
+
+
