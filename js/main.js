@@ -122,6 +122,10 @@ class Hippo {
     this.startingPositionX = Math.floor(Math.random() * (8 - 1) + 1) * 10;
     this.startingPositionY = Math.floor(Math.random() * (6 - 3) + 3) * 10;
 
+    console.log(
+      `hippoX ${this.startingPositionX}  hippoY ${this.startingPositionY}`
+    );
+
     this.positionX = this.startingPositionX;
     this.positionY = this.startingPositionY;
 
@@ -147,23 +151,23 @@ class Hippo {
   }
 
   moveLeft() {
-      this.positionX -= this.movementAmount;
-      this.hippoElement.style.left = this.positionX + "vw";
+    this.positionX -= this.movementAmount;
+    this.hippoElement.style.left = this.positionX + "vw";
   }
 
   moveRight() {
-      this.positionX += this.movementAmount;
-      this.hippoElement.style.left = this.positionX + "vw";
+    this.positionX += this.movementAmount;
+    this.hippoElement.style.left = this.positionX + "vw";
   }
 
   moveUp() {
-      this.positionY += this.movementAmount;
-      this.hippoElement.style.bottom = this.positionY + "vh";
+    this.positionY += this.movementAmount;
+    this.hippoElement.style.bottom = this.positionY + "vh";
   }
 
   moveDown() {
-      this.positionY -= this.movementAmount;
-      this.hippoElement.style.bottom = this.positionY + "vh";
+    this.positionY -= this.movementAmount;
+    this.hippoElement.style.bottom = this.positionY + "vh";
   }
 }
 
@@ -179,7 +183,7 @@ class Game {
     const counter = document.getElementById("levelCounterSpan");
     counter.innerText = this.level;
     const instructions = document.getElementById("instructions");
-    
+
     if (level === 1) {
       this.zebra = new Zebra();
       const croc1 = new Crocodile();
@@ -326,7 +330,6 @@ class Game {
         }
       }
       this.detectCollisionCroc();
-      this.detectCollisionHippo();
       this.detectWin();
     });
   }
@@ -387,7 +390,12 @@ class Game {
             this.hippos[i].moveUp();
             this.hippos[i].movementArray.push("up");
           }
+          console.log(
+            `hippoX ${this.hippos[i].positionX}  hippoY ${this.hippos[i].positionY}`
+          );
         }
+        this.detectCollisionHippo();
+        this.detectWin();
       }
     });
   }
@@ -395,18 +403,17 @@ class Game {
   detectCollisionCroc() {
     for (let i = 0; i < this.crocodiles.length; i++) {
       if (
-        this.zebra.positionX <
-          this.crocodiles[i].positionX + this.crocodiles[i].width &&
-        this.zebra.positionX + this.zebra.width >
-          this.crocodiles[i].positionX &&
-        this.zebra.positionY <
-          this.crocodiles[i].positionY + this.crocodiles[i].height &&
-        this.zebra.height + this.zebra.positionY > this.crocodiles[i].positionY
+        this.zebra.positionX === this.crocodiles[i].positionX &&
+        this.zebra.positionY === this.crocodiles[i].positionY
       ) {
         console.log("collision detected!!");
-        console.log(`crocX ${this.crocodiles[i].positionX}, crocY ${this.crocodiles[i].positionY} `)
-        console.log(`zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `)
-       // location.href = "../gameover.html";
+        console.log(
+          `crocX ${this.crocodiles[i].positionX}, crocY ${this.crocodiles[i].positionY} `
+        );
+        console.log(
+          `zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `
+        );
+        // location.href = "../gameover.html";
       }
     }
   }
@@ -414,27 +421,25 @@ class Game {
   detectCollisionHippo() {
     for (let i = 0; i < this.hippos.length; i++) {
       if (
-        this.zebra.positionX <
-          this.hippos[i].positionX + this.hippos[i].width &&
-        this.zebra.positionX + this.zebra.width >
-          this.hippos[i].positionX &&
-        this.zebra.positionY <
-          this.hippos[i].positionY + this.hippos[i].height &&
-        this.zebra.height + this.zebra.positionY > this.hippos[i].positionY
+        this.zebra.positionX === this.hippos[i].positionX &&
+        this.zebra.positionY === this.hippos[i].positionY
       ) {
         console.log("collision detected!!");
-        console.log(`hippoX${this.hippos[i].positionX}, hippoY${this.hippos[i].positionY} `)
+        console.log(
+          `hippoX${this.hippos[i].positionX}, hippoY${this.hippos[i].positionY} `
+        );
+        console.log(
+          `zebraX ${this.zebra.positionX}, zebraY ${this.zebra.positionY} `
+        );
         //location.href = "./gameover.html";
       }
     }
   }
 
   detectWin() {
-  if (this.zebra.positionY >= 80 && this.level === 8) {
-   // location.href = "./level.html";
-   console.log("you have won the game");
-   alert("you have won the game")
-  } else if (this.zebra.positionY >= 80) {
+    if (this.zebra.positionY >= 80 && this.level === 8) {
+      location.href = "./level.html";
+    } else if (this.zebra.positionY >= 80) {
       this.level++;
       console.log("Winner");
       this.zebra.zebraElement.remove();
@@ -444,14 +449,15 @@ class Game {
       for (let j = 0; j < this.hippos.length; j++) {
         this.hippos[j].hippoElement.remove();
       }
-
+      this.crocodiles = [];
+      this.hippos = [];
       this.startLevel(this.level);
     }
   }
 }
 
 const game = new Game();
-game.startLevel(1);
+game.startLevel(5);
 game.addEventListenerZebra();
 game.addEventListenerCrocodile();
 game.addEventListenerHippo();

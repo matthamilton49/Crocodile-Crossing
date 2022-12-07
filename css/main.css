@@ -95,28 +95,33 @@ body {
 
  .grassImage {
    height: 9vh;
+   width:18vw;
    margin-top: 3vh;
   
  }
 
  .grassImageLow {
     height: 9vh;
+    width:18vw;
     margin-top: 9vh;
    
   }
 
 .dirt {
     height: 6vh;
+    width:18vw;
     margin-top: 12vh;
 }
 
 .dirtHigh {
     height: 6vh;
+    width:18vw;
     margin-top: 6vh;
 }
 
 .waves {
     height: 15vh;
+    width: 30vw;
     margin-top: 2vh;
 }
 
