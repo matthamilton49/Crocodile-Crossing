@@ -304,7 +304,7 @@ class Game {
     });
   }
 
-  addEventListenerCrocodile() {
+  addEventListenersEnemies() {
     document.addEventListener("keydown", (event) => {
       if (
         event.key === "ArrowRight" ||
@@ -316,36 +316,31 @@ class Game {
         event.key === "ArrowDown" ||
         event.key === "s"
       ) {
-        for (let i = 0; i < this.crocodiles.length; i++) {
-          this.crocodiles[i].randomNumber = Math.floor(Math.random() * 4);
-          if (this.crocodiles[i].randomNumber === 0) {
-            this.crocodiles[i].moveRight();
-          } else if (this.crocodiles[i].randomNumber === 1) {
-            this.crocodiles[i].moveUp();
-          } else if (this.crocodiles[i].randomNumber === 2) {
-            this.crocodiles[i].moveLeft();
-          } else {
-            this.crocodiles[i].moveDown();
-          }
-        }
-      }
+      this.crocMovement();
+      this.hippoMovement();
       this.detectCollisionCroc();
+      this.detectCollisionHippo();
       this.detectWin();
+      }
     });
   }
 
-  addEventListenerHippo() {
-    document.addEventListener("keydown", (event) => {
-      if (
-        event.key === "ArrowRight" ||
-        event.key === "d" ||
-        event.key === "ArrowLeft" ||
-        event.key === "a" ||
-        event.key === "ArrowUp" ||
-        event.key === "w" ||
-        event.key === "ArrowDown" ||
-        event.key === "s"
-      ) {
+  crocMovement () {
+    for (let i = 0; i < this.crocodiles.length; i++) {
+      this.crocodiles[i].randomNumber = Math.floor(Math.random() * 4);
+    if (this.crocodiles[i].randomNumber === 0) {
+      this.crocodiles[i].moveRight();
+    } else if (this.crocodiles[i].randomNumber === 1) {
+      this.crocodiles[i].moveUp();
+    } else if (this.crocodiles[i].randomNumber === 2) {
+      this.crocodiles[i].moveLeft();
+    } else {
+      this.crocodiles[i].moveDown();
+    }
+  }
+}
+
+  hippoMovement() {
         for (let i = 0; i < this.hippos.length; i++) {
           if (this.hippos[i].movementArray.length % 2 === 1) {
             this.hippos[i].randomNumber = Math.floor(Math.random() * 4);
@@ -394,10 +389,6 @@ class Game {
             `hippoX ${this.hippos[i].positionX}  hippoY ${this.hippos[i].positionY}`
           );
         }
-        this.detectCollisionHippo();
-        this.detectWin();
-      }
-    });
   }
 
   detectCollisionCroc() {
@@ -457,7 +448,7 @@ class Game {
 }
 
 const game = new Game();
-game.startLevel(5);
+game.startLevel(1);
 game.addEventListenerZebra();
-game.addEventListenerCrocodile();
-game.addEventListenerHippo();
+game.addEventListenersEnemies();
+
