@@ -161,6 +161,9 @@ body {
     position: absolute;
     background-position: center;
 }
-
+ 
+#backgroundMusic {
+ height:0;
+}
 
 
