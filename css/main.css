@@ -129,10 +129,13 @@ body {
     height: 12vh;
     position:absolute;
     top: 2vh;
-    left: 15vw;
+    left: 10vw;
     color: whitesmoke;
     font-size: 11vh;
     font-style: oblique;
+    border: 2px solid whitesmoke;
+    padding: 5px 10px 5px 10px;
+    background-color:rgba(14, 13, 13, 0.3);;
 }
 
 #instructions {
@@ -147,7 +150,9 @@ body {
     text-align: left;
     font-weight: bold;
     border: 2px solid whitesmoke;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
+    background-color:rgba(14, 13, 13, 0.3);;
+    
    
 }
 
@@ -162,8 +167,6 @@ body {
     background-position: center;
 }
  
-#backgroundMusic {
- height:0;
-}
+
 
 

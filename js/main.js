@@ -313,6 +313,12 @@ class Game {
       this.createCrocodiles(4);
       this.createHippos(4);
       this.createLions(2);
+    } else if (level === 13) {
+      instructions.innerText = "This is the last level";
+      this.zebra = new Zebra();
+      this.createCrocodiles(6);
+      this.createHippos(6);
+      this.createLions(4);
     }
   }
   addEventListenerZebra() {
@@ -484,7 +490,7 @@ class Game {
   }
 
   detectWin() {
-    if (this.zebra.positionY >= 80 && this.level === 15) {
+    if (this.zebra.positionY >= 80 && this.level === 13) {
       location.href = "./level.html";
     } else if (this.zebra.positionY >= 80) {
       this.level++;
