@@ -332,7 +332,7 @@ class Game {
         event.key === "s"
       ) {
         const splashSound = new Audio("./splash.wav");
-        splashSound.volume = 0.5;
+        splashSound.volume = 0.4;
         splashSound.play();
         this.crocMovement();
         this.hippoMovement();
@@ -503,8 +503,16 @@ const game = new Game();
 game.startLevel(1);
 game.addEventListenerZebra();
 game.addEventListenersEnemies();
+
 const riverSound = new Audio("./river.wav");
-riverSound.volume = 0.5;
+riverSound.volume = 0.2;
 riverSound.loop=true;
 riverSound.play();
+
+function play() {
+  let audio = new Audio("./mgmlion.mp3");
+  audio.volume= 1;
+  audio.play();
+  }
+  setInterval(play, 20000);
 
