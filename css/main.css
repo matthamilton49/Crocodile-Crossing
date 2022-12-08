@@ -14,20 +14,21 @@ body {
 }
 
 #grass {
-    background-color: rgb(64, 228, 64);
+    background-image: url('../images/grass4.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 20vh;
     width:100vw;
     position: absolute;
     top: 0;
     left: 0;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: nowrap;
+
 }
 
 #sand {
-    background-color: sandybrown; 
+    background-image: url('../images/sand3.jpg') ;
+    background-size: cover;
+  
     height: 20vh;
     width:100vw;
     position: absolute;
@@ -45,20 +46,13 @@ body {
     width: 100vw;
     bottom: 20vh;
     left: 0;
-    background-color: rgb(81, 81, 251);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    background-image: url('../images/water.jpg') ;
+    background-size: cover;
+  
     
 
 }
 
-.riverSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    
-}
 
 #zebra {
     background-image: url('../images/zebra3.png') ;

@@ -211,23 +211,6 @@ class Lion {
   }
 }
 
-class Sounds {
-  constructor() {
-    this.backgroundMusic = document.createElement("audio");
-    this.backgroundMusic.src = "../images/river.wav";
-    this.backgroundMusic.setAttribute("preload", "auto");
-    this.backgroundMusic.setAttribute("controls", "none");
-    this.backgroundMusic.style.display = "none";
-    document.body.appendChild(this.backgroundMusic);
-    this.play = function () {
-      this.backgroundMusic.play();
-    };
-    this.stop = function () {
-      this.backgroundMusic.pause();
-    };
-  }
-}
-
 class Game {
   constructor() {
     this.zebra = null;
@@ -243,6 +226,7 @@ class Game {
     const instructions = document.getElementById("instructions");
 
     if (level === 1) {
+      instructions.innerText = "Crocodiles can move in any direction, but won't leave the river"
       this.zebra = new Zebra();
       this.createCrocodiles(1);
     } else if (level === 2) {
@@ -519,4 +503,8 @@ const game = new Game();
 game.startLevel(1);
 game.addEventListenerZebra();
 game.addEventListenersEnemies();
+const riverSound = new Audio("./river.wav");
+riverSound.volume = 0.5;
+riverSound.loop=true;
+riverSound.play();
 
