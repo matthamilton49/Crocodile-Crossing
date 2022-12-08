@@ -7,10 +7,16 @@ html {
 
 
 
-img {
+#crocLogo {
     background-color: none;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 0;
+}
+
+#crocname {
+    background-color: none;
+    margin-top: 0;
+    margin-bottom: 5vh;
 }
 
 #logo {
@@ -50,11 +56,9 @@ a {
     text-decoration: none;
 }
 
-#gameover h1 {
-    color: whitesmoke;
-    font-size: 20vh;
-    font-family: 'Times New Roman', Times, serif;
-    margin-bottom: 5vh;
+#gameoverimg {
+    margin-bottom: 11vh;
+    margin-top: 15vh;
 }
 
 #gameover {
@@ -75,8 +79,9 @@ a {
     font-style: oblique;
 }
 
-#congratulations h1 {
-    font-size: 13vh;
+#congratsimg {
+    margin-top: 20vh;
+    margin-bottom: 15vh;
 }
 
 #retry {
@@ -98,5 +103,9 @@ footer a{
     width:100vw;
     display: flex;
     justify-content: left;
-    margin-top: 8vh;
+    margin-top: 5vh;
+}
+
+p {
+    margin-bottom: 9vh;
 }
