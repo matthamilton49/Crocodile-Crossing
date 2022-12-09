@@ -1,13 +1,13 @@
-#CROCODILE CROSSING
+# CROCODILE CROSSING
 ***
 ![Logo](./images/logo2.png)
 ***
 
-###Intro
+### Intro
 ---
 Welcome to the plains of Africa! Zach the zebra has run out of grass. He must cross the treacherous African river, filled with dangerous animals, to reach the otherside where the plains are filled with zebra food.  
 
-###Gamplay
+### Gamplay
 ---
 ![Start Page](./images/startscreen.png)
 ![Level 4](./images/level4.png)
@@ -19,6 +19,6 @@ Watch out though, one wrong move and its game over and Zach is someones lunch!
 ![GameOver](./images/gameoverpage.png)
 Good luck passing all 13 levels. 
 
-###Play
+### Play
 ---
 Play the current version here [Crocodile Crossing](https://matthamilton49.github.io/Crocodile-Crossing/)
