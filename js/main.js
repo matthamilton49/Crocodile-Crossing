@@ -1,3 +1,4 @@
+//Zebra class - controllable character
 class Zebra {
   constructor() {
     this.width = 10;
@@ -56,6 +57,7 @@ class Zebra {
   }
 }
 
+// Crocodile class - most common enemy, moves up, down, left, right
 class Crocodile {
   constructor() {
     this.width = 10;
@@ -114,6 +116,7 @@ class Crocodile {
   }
 }
 
+//Hippo class - can only move 1 tile from original position, up then down, left then right etc.
 class Hippo {
   constructor() {
     this.width = 10;
@@ -167,6 +170,7 @@ class Hippo {
   }
 }
 
+//Lion class - can only move left to right an is on the sandy bank side of the river
 class Lion {
   constructor() {
     this.width = 10;
@@ -211,6 +215,7 @@ class Lion {
   }
 }
 
+//Game class - sets up all the levels, event key listeners, movement, collision detection etc.
 class Game {
   constructor() {
     this.zebra = null;
@@ -298,11 +303,23 @@ class Game {
       this.createHippos(4);
       this.createLions(2);
     } else if (level === 13) {
-      instructions.innerText = "This is the last level";
+      instructions.innerText = "This could be the last level....";
       this.zebra = new Zebra();
       this.createCrocodiles(6);
       this.createHippos(6);
       this.createLions(4);
+    } else if (level === 14) {
+      instructions.innerText = "Just kidding....";
+      this.zebra = new Zebra();
+      this.createCrocodiles(7);
+      this.createHippos(7);
+      this.createLions(4);
+    } else if (level === 15) {
+      instructions.innerText = "Hope you get this far, Sarah";
+      this.zebra = new Zebra();
+      this.createCrocodiles(10);
+      this.createHippos(10);
+      this.createLions(5);
     }
   }
   addEventListenerZebra() {
@@ -331,7 +348,7 @@ class Game {
         event.key === "ArrowDown" ||
         event.key === "s"
       ) {
-        const splashSound = new Audio("./splash.wav");
+        const splashSound = new Audio("./sounds/splash.wav");
         splashSound.volume = 0.4;
         splashSound.play();
         this.crocMovement();
@@ -474,7 +491,7 @@ class Game {
   }
 
   detectWin() {
-    if (this.zebra.positionY >= 80 && this.level === 13) {
+    if (this.zebra.positionY >= 80 && this.level === 15) {
       location.href = "./level.html";
     } else if (this.zebra.positionY >= 80) {
       this.level++;
@@ -498,19 +515,21 @@ class Game {
 }
 
 
-
+//function to start a game or level
 const game = new Game();
 game.startLevel(1);
 game.addEventListenerZebra();
 game.addEventListenersEnemies();
 
-const riverSound = new Audio("./river.wav");
+//background music
+const riverSound = new Audio("./sounds/river.wav");
 riverSound.volume = 0.2;
 riverSound.loop=true;
 riverSound.play();
 
+//lions roar every 20 seconds
 function play() {
-  let audio = new Audio("./mgmlion.mp3");
+  let audio = new Audio("./sounds/mgmlion.mp3");
   audio.volume= 1;
   audio.play();
   }
