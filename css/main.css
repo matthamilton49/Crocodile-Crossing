@@ -14,20 +14,21 @@ body {
 }
 
 #grass {
-    background-color: rgb(64, 228, 64);
+    background-image: url('../images/grass4.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 20vh;
     width:100vw;
     position: absolute;
     top: 0;
     left: 0;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: nowrap;
+
 }
 
 #sand {
-    background-color: sandybrown; 
+    background-image: url('../images/sand3.jpg') ;
+    background-size: cover;
+  
     height: 20vh;
     width:100vw;
     position: absolute;
@@ -45,23 +46,16 @@ body {
     width: 100vw;
     bottom: 20vh;
     left: 0;
-    background-color: rgb(81, 81, 251);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    background-image: url('../images/water.jpg') ;
+    background-size: cover;
+  
     
 
 }
 
-.riverSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    
-}
 
 #zebra {
-    background-image: url('../images/zebra3.png') ;
+    background-image: url('../images/zebranew.png') ;
     background-color: none;
     background-size: contain;
     background-repeat: no-repeat;
@@ -93,46 +87,25 @@ body {
     background-position: center;
 }
 
- .grassImage {
-   height: 9vh;
-   width:18vw;
-   margin-top: 3vh;
-  
- }
-
- .grassImageLow {
-    height: 9vh;
-    width:18vw;
-    margin-top: 9vh;
-   
-  }
-
-.dirt {
-    height: 6vh;
-    width:18vw;
-    margin-top: 12vh;
-}
-
-.dirtHigh {
-    height: 6vh;
-    width:18vw;
-    margin-top: 6vh;
-}
-
-.waves {
-    height: 15vh;
-    width: 30vw;
-    margin-top: 2vh;
+#gamelogo {
+    height: 12vh;
+    position:absolute;
+    top: 2vh;
+    left: 38vw;
+    
 }
 
 #levelCounter {
     height: 12vh;
     position:absolute;
     top: 2vh;
-    left: 15vw;
+    left: 5vw;
     color: whitesmoke;
     font-size: 11vh;
     font-style: oblique;
+    border: 2px solid whitesmoke;
+    padding: 5px 10px 5px 10px;
+    background-color:rgba(14, 13, 13, 0.3);;
 }
 
 #instructions {
@@ -147,8 +120,8 @@ body {
     text-align: left;
     font-weight: bold;
     border: 2px solid whitesmoke;
-    padding: 5px;
-   
+    padding: 5px 5px 5px 10px;
+    background-color:rgba(14, 13, 13, 0.3);; 
 }
 
 #lion {
@@ -162,8 +135,6 @@ body {
     background-position: center;
 }
  
-#backgroundMusic {
- height:0;
-}
+
 
 
